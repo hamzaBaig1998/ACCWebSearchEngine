@@ -6,9 +6,7 @@ import java.util.Scanner;
 public class Driver {
 
 //	 TODO: Hamza Baig. A basic driver for the web search engine. Will update late
-	public static void log(String message) {
-		System.out.println(message);
-	};
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -28,40 +26,40 @@ public class Driver {
 		do {
 			for (String option : options) 
 			{ 
-			    log(option);
+			    Utility.log(option);
 			}
 			
-			log("Please select one option:");
+			Utility.log("Please select one option:");
 			int option=input.nextInt();
 			
 			switch(option) {
 				case 1:{
-					log("Selected option: " + options.get(option-1));
+					Utility.log("Selected option: " + options.get(option-1));
 					break;
 				}
 				case 2:{
-					log("Selected option: " + options.get(option-1));
+					Utility.log("Selected option: " + options.get(option-1));
 					break;
 				}
 				case 3:{
-					log("Selected option: " + options.get(option-1));
+					Utility.log("Selected option: " + options.get(option-1));
 					break;
 				}
 				case 4:{
-					log("Selected option: " + options.get(option-1));
+					Utility.log("Selected option: " + options.get(option-1));
 					break;
 				}
 				case 5:{
-					log("Selected option: " + options.get(option-1));
+					Utility.log("Selected option: " + options.get(option-1));
 					break;
 				}
 				case 6:{
-					log("Selected option: " + options.get(option-1));
+					Utility.log("Selected option: " + options.get(option-1));
 					state=false;
 					break;
 				}
 				default:{
-					log("Warning: Please select a valid option!");
+					Utility.log("Selected option: " + options.get(option-1));
 					break;
 				}
 			}
