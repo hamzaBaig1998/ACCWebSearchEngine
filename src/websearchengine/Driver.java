@@ -18,7 +18,7 @@ public class Driver {
 			{
 				add("1. Search URL");
 				add("2. Remove Cache");
-				add("3. Rank pages");
+				add("3. Search word");
 				add("4. Auto-correct word");
 				add("5. Auto-fill word");
 				add("6. Exit");
@@ -80,6 +80,11 @@ public class Driver {
 				}
 				case 3:{
 					Utility.log("Selected option: " + options.get(option-1));
+					try {
+						KeywordSearch.read_files();
+					}catch(Exception e) {
+						Utility.log(e.getMessage());
+					}
 					break;
 				}
 				case 4:{
