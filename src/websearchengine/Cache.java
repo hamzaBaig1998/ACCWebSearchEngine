@@ -1,43 +1,90 @@
 package websearchengine;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 public class Cache {
 	
 	public static Boolean createCacheFile() {
-		try {
+		if(!fileExists("cache.txt")) {
 			File fileStream=new File("cache.txt");
-			if(fileStream.createNewFile()) {
-//				File created
-				Utility.log("File created!");
-				return true;
-			}else {
-//				File already exists
-				Utility.log("File already exists!");
+			try {
+				if(fileStream.createNewFile()) {
+//					File created
+//					Utility.log("File created!");
+					return true;
+				}
+			}catch(Exception e) {
+				Utility.log(e.getMessage());
 				return false;
 			}
-		}catch(Exception e) {
-			Utility.log(e.getMessage());
+		}else {
+//			Utility.log("File already exists!");
 			return false;
 		}
+		
+		return false;
 	}
 	
 	public static Boolean fileExists(String path) {
-		File f = new File(path);
-		if(f.exists() && !f.isDirectory()) { 
+		File file = new File(path);
+		if(file.isFile()) { 
 		    return true;
 		}else {
 			return false;
 		}
 	}
 	
+	public static void addToCache(String filepath) {
+		File fileStream=new File("cache.txt");
+//		create new file if not existing
+		createCacheFile();
+		try {
+//			Append to file
+			BufferedWriter bufferWriter = new BufferedWriter(new FileWriter(fileStream, true));
+			bufferWriter.append(filepath);
+			bufferWriter.newLine();
+			bufferWriter.flush();
+			bufferWriter.close();
+		}catch(Exception e){
+			Utility.log(e.getMessage());
+		}
+		
+	}
+	
+	public static Boolean existsInCache(String path) {
+		BufferedReader reader;
+		try {
+			reader=new BufferedReader(new FileReader("cache.txt"));
+			String line = reader.readLine();
+			while(line != null) {
+//				Utility.log(line);
+				if(line.equals(path)) {
+//					Utility.log(path+" exists");
+					reader.close();
+					return true;
+				}
+				line=reader.readLine();
+			}
+			reader.close();
+		}catch(Exception e) {
+			Utility.log(e.getMessage());
+		}	
+		return false;
+	}
+	
 	public static void deleteCache() {
 		try {
+//			REFERENCE: https://docs.oracle.com/javase/7/docs/api/java/io/FileOutputStream.html
 			new FileOutputStream("cache.txt").close();
 			Utility.log("Cache has been cleared");
 		}catch(Exception e) {
 			Utility.log(e.getMessage());
 		}
 	}
+	
 }

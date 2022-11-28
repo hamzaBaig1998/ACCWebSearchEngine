@@ -35,8 +35,6 @@ public class Driver {
 			switch(option) {
 				case 1:{
 					Utility.log("Selected option: " + options.get(option-1));
-//					Utility.log("The file exists?:"+Cache.fileExists("cache.txt"));
-//					Cache.createCacheFile();
 					break;
 				}
 				case 2:{
