@@ -41,6 +41,7 @@ public class Driver {
 					String uri="";
 					Utility.log("Selected option: " + options.get(option-1));
 					
+					input.nextLine();
 					// user input
 					Utility.log("Enter Uri");
 					uri = input.nextLine();
@@ -51,11 +52,15 @@ public class Driver {
 					// check if valid Uri
 					if(Pattern.matches(webCrawler.urlPattern, uri))
 					{
-						// cehck if present in cache
-						if (!Cache.isAvailable(uri)) 
+						// check if present in cache
+						if (!Cache.existsInCache(uri)) 
 						{
 							// calling crawler
-							webCrawler.checkCrawl(1, uri, new ArrayList<String>(),depth);
+							try {
+								webCrawler.checkCrawl(1, uri, new ArrayList<String>(),depth);
+							}catch(IOException e) {
+								Utility.log(e.getMessage());
+							}
 						} else 
 						{
 							Utility.log("This URL has already been crawled.");
