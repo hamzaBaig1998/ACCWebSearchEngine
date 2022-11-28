@@ -54,7 +54,7 @@ public class webCrawler{
 			// if success
 			if (conn.response().statusCode() == 200) {
 				//storing to text file
-				toHTML.testfiles(uri);
+				toText.convert(uri);
 				// adding Uri to visited list
 				urisVisited.add(uri);
 				return doc;
