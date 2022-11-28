@@ -2,6 +2,8 @@ package websearchengine;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.io.IOException;
 
 public class Driver {
 
@@ -34,7 +36,36 @@ public class Driver {
 			
 			switch(option) {
 				case 1:{
+					
+					int depth =1;
+					String uri="";
 					Utility.log("Selected option: " + options.get(option-1));
+					
+					// user input
+					Utility.log("Enter Uri");
+					uri = input.nextLine();
+					
+					Utility.log("Enter Depth");
+					depth = input.nextInt();
+					
+					// check if valid Uri
+					if(Pattern.matches(webCrawler.urlPattern, uri))
+					{
+						// cehck if present in cache
+						if (!Cache.isAvailable(uri)) 
+						{
+							// calling crawler
+							webCrawler.checkCrawl(1, uri, new ArrayList<String>(),depth);
+						} else 
+						{
+							Utility.log("This URL has already been crawled.");
+						}
+					}
+					else 
+					{
+						Utility.log("Invalid uri");
+					}
+					
 					break;
 				}
 				case 2:{
