@@ -18,7 +18,7 @@ public class Driver {
 			{
 				add("1. Search URL");
 				add("2. Remove Cache");
-				add("3. Search word");
+				add("3. Rank pages");
 				add("4. Auto-correct word");
 				add("5. Auto-fill word");
 				add("6. Exit");
@@ -41,7 +41,6 @@ public class Driver {
 					String uri="";
 					Utility.log("Selected option: " + options.get(option-1));
 					
-					input.nextLine();
 					// user input
 					Utility.log("Enter Uri");
 					uri = input.nextLine();
@@ -52,15 +51,11 @@ public class Driver {
 					// check if valid Uri
 					if(Pattern.matches(webCrawler.urlPattern, uri))
 					{
-						// check if present in cache
-						if (!Cache.existsInCache(uri)) 
+						// cehck if present in cache
+						if (!Cache.isAvailable(uri)) 
 						{
 							// calling crawler
-							try {
-								webCrawler.checkCrawl(1, uri, new ArrayList<String>(),depth);
-							}catch(IOException e) {
-								Utility.log(e.getMessage());
-							}
+							webCrawler.checkCrawl(1, uri, new ArrayList<String>(),depth);
 						} else 
 						{
 							Utility.log("This URL has already been crawled.");
@@ -80,15 +75,14 @@ public class Driver {
 				}
 				case 3:{
 					Utility.log("Selected option: " + options.get(option-1));
-					try {
-						KeywordSearch.read_files();
-					}catch(Exception e) {
-						Utility.log(e.getMessage());
-					}
 					break;
 				}
 				case 4:{
 					Utility.log("Selected option: " + options.get(option-1));
+					System.out.println("\nAUTOCORRECT SIMULATION\n");
+					loadWords();
+					sort(words);
+					startSimulation();
 					break;
 				}
 				case 5:{
