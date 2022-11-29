@@ -31,6 +31,7 @@ public class AutoCorrect {
     private static Scanner scanner = new Scanner(System.in);
     public static String[] words; // Word list array
     private static String userWord = ""; // Empty by default
+    private static Integer distance = 0; // Zero by default
     private static Search search = new Search(); // For binary search
     private static Stack<String> suggestions = new Stack<String>(50);
     private static ArrayList<String> tempSuggestion = new ArrayList<>();
@@ -137,6 +138,9 @@ public class AutoCorrect {
             System.out.print("Enter a word: ");
             userWord = scanner.next().trim().toLowerCase();
 
+            System.out.print("Enter the distance: ");
+            distance = Integer.valueOf(scanner.next().trim().toLowerCase());
+
             // Break out of the while loop if user enters "done"
             if (userWord.equalsIgnoreCase("done")) {
                 System.out.println("Goodbye.\n");
@@ -176,7 +180,7 @@ public class AutoCorrect {
                             if (containsAllChars(userWord, word)) // Same chars
                                 suggestions.push(word);
                         }
-                        tempUserWord = userWord.substring(0, userWord.length()-1);
+                        tempUserWord = userWord.substring(0, userWord.length()-distance);
                         if (tempUserWord.length() == word.length()) // Same length
                             if (containsAllChars(tempUserWord, word)) // Same chars
                                 suggestions.push(word);
