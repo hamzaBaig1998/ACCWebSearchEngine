@@ -1,8 +1,9 @@
 package websearchengine;
 import java.io.BufferedReader;
-
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -46,6 +47,20 @@ public class KeywordSearch {
 			System.out.println("Please enter the Keyword to be searched: ");
 			String word_searching = scan.nextLine(); // Read user input
 			
+//			Write to history
+			File file = new File("history.txt");
+			try {
+				BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
+//				Driver.keys[Driver.keys.length]=word_searching;
+//				Driver.history.put(word_searching, Driver.keys.length-1);
+			    writer.append(word_searching);
+			    writer.newLine();
+			    writer.flush();
+			    writer.close();
+			}catch(Exception e) {
+				Utility.log("Error: " + e.getMessage());
+			}
+//		    Write to history ends.
 			
 			// using the loop for reading the file contents
 			for (String file_name : Objects.requireNonNull(name_of_file)) {

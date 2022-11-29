@@ -1,5 +1,6 @@
 package utility;
 
+import websearchengine.Utility;
 
 /*************************************************************************
  *  Compilation:  javac TST.java
@@ -148,6 +149,28 @@ public class TST<Value> {
         collect(root, "", 0, pat, queue);
         return queue;
     }
+    
+    public void printMatchingWords(String pat) {
+        Queue<String> queue = new Queue<String>();
+        collect(root, "", 0, pat, queue);
+        System.out.println("Matching words:");
+        for (String match: queue) {
+            System.out.println("matching word to "+ pat +" : "+match);
+        }
+    }
+    
+ // all keys starting with given prefix
+    public void printSimilarWords(String prefix) {
+        Queue<String> queue = new Queue<String>();
+        Node x = get(root, prefix, 0);
+//        if (x == null) return queue;
+        if (x.val != null) queue.enqueue(prefix);
+        collect(x.mid, prefix, queue);
+        System.out.println("Matching words:");
+        for (String match: queue) {
+            System.out.println("matching word to "+ prefix +" : "+match);
+        }
+    }
  
     private void collect(Node x, String prefix, int i, String pat, Queue<String> q) {
         if (x == null) return;
@@ -179,6 +202,8 @@ public class TST<Value> {
         //}
         
         // print value of a key
+//        st.printMatchingWords("she");
+        st.printSimilarWords("she");
         String key = "shells";  
         StdOut.println("key = shells, value = "+ st.get(key));
     }
