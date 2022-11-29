@@ -56,7 +56,11 @@ public class Driver {
 					
 					Utility.log("Enter Depth");
 					depth = input.nextInt();
-					
+					// default depth for wrong input
+					if(depth <1)
+					{
+						depth =1;
+					}
 					// check if valid Uri
 					if(Pattern.matches(webCrawler.urlPattern, uri))
 					{
