@@ -197,19 +197,26 @@ public class AutoCorrect {
             if (suggestions.isEmpty()) {
                 System.out.println("No suggestions.\n");
 
-                System.out.print("Enter a word to add to word bank: ");
-                String newWord = scanner.next().trim().toLowerCase();
+                System.out.print("Do you want to add the word you provided to the word bank: (y/n)");
+                String toggle = scanner.next().trim().toLowerCase();
 
-                try(PrintWriter output = new PrintWriter(new FileWriter("src/websearchengine/words.txt",true)))
-                {
-                    output.printf("%s\r\n", newWord);
+                if(toggle.equalsIgnoreCase("yes") || toggle.equalsIgnoreCase("y")){
+                    try(PrintWriter output = new PrintWriter(new FileWriter("src/websearchengine/words.txt",true)))
+                    {
+                        output.printf("%s\r\n", userWord);
+                    }
+                    catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    loadWords();
+                    sort(words);
                 }
-                catch (Exception e) {
-                    System.out.println(e.getMessage());
+                else{
+                    startSimulation();
                 }
 
-                loadWords();
-                sort(words);
+//                System.out.print("Enter a word to add to word bank: ");
+//                String newWord = scanner.next().trim().toLowerCase();
 
                 // If user enters anything else, call autoCorrect()
                 autoCorrect();
