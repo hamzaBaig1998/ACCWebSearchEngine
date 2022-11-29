@@ -60,7 +60,8 @@ public class toText {
 			// going to new line
 			filefinale.newLine();
 		}
-
+		
+		Utility.log("Added :"+uri+" "+timeString+".txt");
 		filefinale.flush();
 		filefinale.close();
 		
