@@ -3,6 +3,9 @@ package websearchengine;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import websearchengine.keywordsearch;
+
 import java.io.IOException;
 
 public class Driver {
@@ -10,7 +13,7 @@ public class Driver {
 //	 TODO: Hamza Baig. A basic driver for the web search engine. Will update late
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		Scanner input = new Scanner(System.in);
 		boolean state=true;
@@ -18,7 +21,7 @@ public class Driver {
 			{
 				add("1. Search URL");
 				add("2. Remove Cache");
-				add("3. Search word");
+				add("3. Rank pages");
 				add("4. Auto-correct word");
 				add("5. Auto-fill word");
 				add("6. Exit");
@@ -80,11 +83,7 @@ public class Driver {
 				}
 				case 3:{
 					Utility.log("Selected option: " + options.get(option-1));
-					try {
-						KeywordSearch.read_files();
-					}catch(Exception e) {
-						Utility.log(e.getMessage());
-					}
+					keywordsearch.read_files();
 					break;
 				}
 				case 4:{
