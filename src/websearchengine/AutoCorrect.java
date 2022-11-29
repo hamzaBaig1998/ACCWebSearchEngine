@@ -35,11 +35,7 @@ public class AutoCorrect {
     private static Search search = new Search(); // For binary search
     private static Stack<String> suggestions = new Stack<String>(50);
     private static ArrayList<String> tempSuggestion = new ArrayList<>();
-    /**
-     * Main method for execution of the AutoCorrect program.
-     *
-     * @param args Command line arguments, String[].
-     */
+
     public static void main(String[] args) {
         System.out.println("\nAUTOCORRECT SIMULATION\n");
         loadWords();
@@ -47,10 +43,6 @@ public class AutoCorrect {
         startSimulation();
     }
 
-    /**
-     * Loads a word list text file into memory for fast access.
-     *
-     */
     public static void loadWords() {
         String line = null; // Temp variable for storing one line at a time
         ArrayList<String> temp = new ArrayList<String>();
@@ -73,12 +65,6 @@ public class AutoCorrect {
         }
     }
 
-    /**
-     * Sorts any E[] using insertion sort.
-     *
-     * @param <E> Type of Object to use.
-     * @param array The E[] to be sorted in place.
-     */
     public static <E extends Comparable<E>> void sort(E[] array) {
         int n = array.length; // Get length of array
 
@@ -99,37 +85,6 @@ public class AutoCorrect {
         }
     }
 
-
-    /**
-     * Sorts the global, static String[] words, based on insertion sort.
-     *
-     */
-    /*
-    public static void sortWords() {
-        int n = words.length; // Get length of words array
-
-        // Insertion sort
-        for (int i = 1; i < n; i++) {
-            String temp = words[i]; // Save the element at index i
-            int j = i - 1; // Let j be the element index one before i
-
-            // Iterate through array
-            while (j > -1 && (words[j].compareTo(temp) > 0)) {
-                // Insert elemnt at words[j] in proper place
-                words[j + 1] = words[j];
-                j--;
-            }
-
-            // Complete the swap..
-            words[j + 1] = temp;
-        }
-    }
-    */
-
-    /**
-     * Retrieves a word from the user via Scanner.
-     *
-     */
     public static void startSimulation() {
         System.out.println("Type \"DONE\" when finished.\n");
 
@@ -146,19 +101,12 @@ public class AutoCorrect {
                 System.out.println("Goodbye.\n");
                 break;
             }
-
             // If user enters anything else, call autoCorrect()
             autoCorrect();
         }
     }
 
-    /**
-     * Searches for userWord in word list.<br>
-     * Prints "Correct." if word is spelled correctly.<br>
-     * Prints a suggestion if word is close to a correct word.<br>
-     * Prints "No suggestions." if word is clearly obscure.
-     *
-     */
+
     public static void autoCorrect() {
         int result = Search.binarySearch(words, userWord);
 
