@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 
+import org.apache.commons.io.FileUtils;
+
 public class Cache {
 	
 	public static Boolean createCacheFile() {
@@ -63,7 +65,8 @@ public class Cache {
 			String line = reader.readLine();
 			while(line != null) {
 //				Utility.log(line);
-				if(line.equals(path)) {
+				String uri= line.split(" ")[0];
+				if(uri.equals(path)) {
 //					Utility.log(path+" exists");
 					reader.close();
 					return true;
@@ -82,6 +85,7 @@ public class Cache {
 //			REFERENCE: https://docs.oracle.com/javase/7/docs/api/java/io/FileOutputStream.html
 			new FileOutputStream("cache.txt").close();
 			Utility.log("Cache has been cleared");
+			FileUtils.cleanDirectory(new File("TextFiles")); 
 		}catch(Exception e) {
 			Utility.log(e.getMessage());
 		}
