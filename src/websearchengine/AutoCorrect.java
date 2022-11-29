@@ -160,7 +160,7 @@ public class AutoCorrect {
 
         // First, check for an exact match
         if (result != -1) {
-            System.out.println("Correct. Congratulations, you can spell!"
+            System.out.println("Correct. Congratulations, you spelt it right!"
                 + "\n");
         }
         // Else, check if the user's word is an anagram of a dictionary word
@@ -199,7 +199,7 @@ public class AutoCorrect {
                 System.out.print("Enter a word to add to word bank: ");
                 String newWord = scanner.next().trim().toLowerCase();
 
-                try(PrintWriter output = new PrintWriter(new FileWriter("words.txt",true)))
+                try(PrintWriter output = new PrintWriter(new FileWriter("src/websearchengine/words.txt",true)))
                 {
                     output.printf("%s\r\n", newWord);
                 }
