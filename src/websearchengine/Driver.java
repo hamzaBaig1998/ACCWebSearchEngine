@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static websearchengine.AutoCorrect.*;
+
 public class Driver {
 
 //	 TODO: Hamza Baig. A basic driver for the web search engine. Will update late

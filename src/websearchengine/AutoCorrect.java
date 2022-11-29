@@ -1,3 +1,4 @@
+package websearchengine;
 /**
  * <h1>AutoCorrect</h1>
  * A word correction program similar to those found in cell phone or email
@@ -18,6 +19,7 @@
  * @version 11/20/2015
  */
 
+import java.net.URI;
 import java.util.*;
 import java.io.*;
 
@@ -25,9 +27,9 @@ public class AutoCorrect {
     /**
      * GLOBAL ATTRIBUTES
      */
-    private static String wordsFileName = "words.txt"; // Word list text file
+    private static String wordsFileName = "src/websearchengine/words.txt"; // Word list text file
     private static Scanner scanner = new Scanner(System.in);
-    private static String[] words; // Word list array
+    public static String[] words; // Word list array
     private static String userWord = ""; // Empty by default
     private static Search search = new Search(); // For binary search
     private static Stack<String> suggestions = new Stack<String>(50);
@@ -53,6 +55,7 @@ public class AutoCorrect {
         ArrayList<String> temp = new ArrayList<String>();
 
         try {
+
             FileReader fileReader = new FileReader(wordsFileName);
             BufferedReader buffReader = new BufferedReader(fileReader);
 

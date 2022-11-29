@@ -1,3 +1,4 @@
+package websearchengine;
 /**
  * <h1>Search</h1>
  * Includes a recursive binary search implementation.
