@@ -33,7 +33,7 @@ public class AutoCorrect {
     private static String userWord = ""; // Empty by default
     private static Search search = new Search(); // For binary search
     private static Stack<String> suggestions = new Stack<String>(50);
-
+    private static ArrayList<String> tempSuggestion = new ArrayList<>();
     /**
      * Main method for execution of the AutoCorrect program.
      *
@@ -170,10 +170,7 @@ public class AutoCorrect {
                 char userWordStart; // First char of userWord
                 String tempUserWord, tempSysWord;
                 if (!word.isEmpty()) { // If word is NOT empty
-                    wordStart = word.charAt(0);
-                    userWordStart = userWord.charAt(0);
 
-                    // if (userWordStart == wordStart) // Same starting char
                         if (userWord.length() == word.length()) {
                             // Same length
                             if (containsAllChars(userWord, word)) // Same chars
@@ -216,19 +213,16 @@ public class AutoCorrect {
             else {
                 System.out.print("Suggestions: ");
                 while (!suggestions.isEmpty()) {
-                    System.out.print(suggestions.pop() + " ");
+                    String temp = suggestions.pop();
+                    if(!tempSuggestion.contains(temp))
+                        System.out.print(temp + " ");
+                    tempSuggestion.add(temp);
                 }
                 System.out.println("\n");
             }
         }
     }
 
-    /**
-     * Converts a String to its integer ASCII value.
-     *
-     * @param str String to convert.
-     * @return int Returns integer ASCII value.
-     */
     public static int toInt(String str) {
         int asciiValue = 0;
         for (int i = 0; i < str.length(); i++) {
@@ -238,13 +232,6 @@ public class AutoCorrect {
         return asciiValue;
     }
 
-    /**
-     * Checks if strTwo contains exclusively all characters from strOne.
-     *
-     * @param strOne String to pull chars from.
-     * @param strTwo String to check for containment.
-     * @return boolean True if strTwo contains all chars of strOne.
-     */
     public static boolean containsAllChars(String strOne, String strTwo) {
         Character[] one = strToCharArray(strOne);
         Character[] two = strToCharArray(strTwo);
@@ -270,12 +257,6 @@ public class AutoCorrect {
         return true;
     }
 
-    /**
-     * Converts a String into a Character array.
-     *
-     * @param str String to convert.
-     * @return Character[] Returns a Character[].
-     */
     public static Character[] strToCharArray(String str) {
         Character[] charArray = new Character[str.length()];
         for (int i = 0; i < str.length(); i++) {
