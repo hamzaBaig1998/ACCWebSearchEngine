@@ -102,6 +102,10 @@ public class Driver {
 				}
 				case 4:{
 					Utility.log("Selected option: " + options.get(option-1));
+					System.out.println("\nAUTOCORRECT SIMULATION\n");
+					loadWords();
+					sort(words);
+					startSimulation();
 					break;
 				}
 				case 5:{
