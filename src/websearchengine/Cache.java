@@ -65,6 +65,8 @@ public class Cache {
 			String line = reader.readLine();
 			while(line != null) {
 //				Utility.log(line);
+				
+//				Split the name from cache and take out the uri which will be first sequence before space as per our naming convention
 				String uri= line.split(" ")[0];
 				if(uri.equals(path)) {
 //					Utility.log(path+" exists");
@@ -75,7 +77,7 @@ public class Cache {
 			}
 			reader.close();
 		}catch(Exception e) {
-			Utility.log(e.getMessage());
+			Utility.log("Error Message: " + e.getMessage());
 		}	
 		return false;
 	}
@@ -85,6 +87,7 @@ public class Cache {
 //			REFERENCE: https://docs.oracle.com/javase/7/docs/api/java/io/FileOutputStream.html
 			new FileOutputStream("cache.txt").close();
 			Utility.log("Cache has been cleared");
+//			REFERECNE: https://commons.apache.org/proper/commons-io/javadocs/api-2.5/org/apache/commons/io/FileUtils.html#cleanDirectory(java.io.File)
 			FileUtils.cleanDirectory(new File("TextFiles")); 
 		}catch(Exception e) {
 			Utility.log(e.getMessage());
