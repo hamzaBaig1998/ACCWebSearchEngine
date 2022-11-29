@@ -1,8 +1,0 @@
-java
-javator
-real
-dead
-reach
-red
-real
-realtor
