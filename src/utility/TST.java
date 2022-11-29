@@ -1,4 +1,6 @@
 package utility;
+
+
 /*************************************************************************
  *  Compilation:  javac TST.java
  *  Execution:    java TST < words.txt

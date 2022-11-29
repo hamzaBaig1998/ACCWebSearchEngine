@@ -1,5 +1,6 @@
 package websearchengine;
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.util.StringTokenizer;
 import utility.TST;
 
 
-public class keywordsearch {
+public class KeywordSearch {
 
 	private static final String path_to_file = "TextFiles/";
 
@@ -50,6 +51,7 @@ public class keywordsearch {
 			for (String file_name : Objects.requireNonNull(name_of_file)) {
 
 				String str_file = path_to_file + file_name;
+				Utility.log(str_file);
 				File current_file = new File(str_file);
 				if (current_file.exists() && current_file.isFile() && current_file.canRead()) {
 					Path path = Paths.get(str_file);
@@ -134,7 +136,7 @@ public class keywordsearch {
 	private static int string_occurence_number(Path path, String word_searching) {
 
 		int total_number;
-		utility.TST<Integer> integer_1 = new utility.TST<Integer>();
+		TST<Integer> integer_1 = new TST<Integer>();
 		List<String> line = null;
 		
 		// using try catch if file get null sos it doesn't throw error
@@ -142,7 +144,7 @@ public class keywordsearch {
 			line = Files.readAllLines(path, StandardCharsets.ISO_8859_1); 
 		} 
 		catch (IOException e) {
-			e.printStackTrace();
+			Utility.log("Error message: "+e.getMessage());
 		}
 
 		for (String str_line : Objects.requireNonNull(line)) {
