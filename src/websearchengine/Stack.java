@@ -1,20 +1,8 @@
 package websearchengine;
-/*
- * Matt Levan
- * CSC 331, Dr. Amlan Chatterjee
- * Data Structures
- *
- * Generic Stack implementation.
- * 
- * Must include four methods:
- * push, pop, peek, isEmpty
- *
- */
 
 import java.util.*;
 import java.io.*;
 
-// Stack implemented using a primitive array
 
 public class Stack<E> {
     // Variables

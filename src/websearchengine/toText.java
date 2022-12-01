@@ -26,7 +26,7 @@ public class toText {
 		if(!dir.exists())
 		dir.mkdir();
 		//JSoup connection  
-		Document doc = Jsoup.connect(uri).get();
+		Document doc = Jsoup.connect(uri).timeout(100*10000).get();
 		
 		
 		

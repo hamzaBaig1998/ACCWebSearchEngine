@@ -134,7 +134,11 @@ public class KeywordSearch {
 			
 			// File
 			String keyword = (String) keyword_list.get(i);
-			System.out.println(page_rank+". "+" ||| number of word occurrence: "+map.get(keyword) +" ||| Uniform Resource Locator (URL) "+hash_mapping_1.get(keyword));
+			if(!map.get(keyword).toString().equals("0")){
+				System.out.println(page_rank+". "+" ||| number of word occurrence: "+map.get(keyword) +" ||| Uniform Resource Locator (URL) "+hash_mapping_1.get(keyword));
+				
+			}
+			
 			
 			//Occurrence
 			page_rank++;

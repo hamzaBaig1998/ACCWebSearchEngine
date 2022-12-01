@@ -128,15 +128,15 @@ public class Driver {
 					      int i=0;
 					      while (myReader.hasNextLine()) {
 					        String data = myReader.nextLine();
-					        keys.add(data);
-					        history.put(data, top);
+					        keys.add(data.toLowerCase());
+					        history.put(data.toLowerCase(), top);
 					        top++;
 					      }
 					      myReader.close();
 					    } catch (Exception e) {
 					      Utility.log("Error: "+ e.getMessage());
 					    }
-					history.printSimilarWords(word);
+					history.printSimilarWords(word.toLowerCase());
 					break;
 				}
 				case 6:{
